@@ -7,7 +7,6 @@ and a basic homophilous social graph generator.
 
 
 
-
 ## Install
 
 ```bash

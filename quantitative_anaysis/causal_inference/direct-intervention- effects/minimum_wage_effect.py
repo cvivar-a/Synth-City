@@ -267,7 +267,7 @@ at a glance, plus a degree distribution as a sanity-check/companion plot.
 
 from synth_city.network.social_graph import build_social_graph
 
-N = 400  # kept small on purpose -- a network plot of 8000 nodes is an unreadable hairball
+N = 200  # kept small on purpose -- a network plot of 8000 nodes is an unreadable hairball
 SEED = 0
 
 city = SynthCity(n_people=N, seed=SEED)

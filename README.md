@@ -3,7 +3,6 @@
 A synthetic city simulation framework for benchmarking causal inference methods, data science techniques,experimentation, marketing mix modeling, and game-theory auctions — with known ground truth, because the population is generated from a structural causal model rather than collected.
 
 
-
 ## Quantitative analysis
 
 Write-ups with results and figures, organized by domain: quantitative_analysis/
@@ -41,7 +40,4 @@ synth_city/
 
 ### Roadmap
 See synth_city_architecture.md for the full design — this repo currently implements Stage 1 (the simulator); Stages 2–4 (estimators, learned behavioral agents, and RL over city policy) are in progress.
-
-
-
 

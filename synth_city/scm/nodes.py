@@ -44,7 +44,13 @@ def f_parental_ses(rng: np.random.Generator, n: int, **_) -> np.ndarray:
 
 
 def f_age(rng: np.random.Generator, n: int, **_) -> np.ndarray:
-    return rng.uniform(18, 75, n)
+    # a rough population pyramid instead of flat: more young/working-age
+    # people than elderly, via a mixture of two normals
+    is_older = rng.random(n) < 0.3
+    younger = rng.normal(32, 8, n)
+    older = rng.normal(58, 10, n)
+    age = np.where(is_older, older, younger)
+    return np.clip(age, 18, 75)
 
 
 # ---------------------------------------------------------------------------
@@ -109,8 +115,12 @@ def f_income(
         - 0.3 * (age - 45) ** 2
         + 1_800 * social_network_position
         + 2_500 * ability
-        + rng.normal(0, 6_000, n)
     )
+    # multiplicative lognormal noise instead of additive normal noise --
+    # keeps income right-skewed the way real income distributions actually are,
+    # rather than skewed only by the min-wage floor truncating the left tail
+    noise_multiplier = rng.lognormal(mean=0.0, sigma=0.18, size=n)
+    base = base * noise_multiplier
     after_tax = base * (1 - tax_rate)
     annual_floor = min_wage * 2_080  # ~40 hrs/week * 52 weeks
     return np.maximum(after_tax, annual_floor)
