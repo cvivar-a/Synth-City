@@ -33,8 +33,8 @@ Each application answers a practical business question.
 
 ---
 
-## Causal Inference
-
+## How can SynthCity be use for:
+### Causal Inference
 **Question**
 
 A city introduces a transportation subsidy.
@@ -58,8 +58,7 @@ Methods
 
 ---
 
-## Data Science
-
+### Data Science
 **Question**
 
 Which customers are most likely to become loyal shoppers?
@@ -82,7 +81,7 @@ Methods
 
 ---
 
-## Marketing Analytics
+### Marketing Analytics
 
 **Question**
 
@@ -104,7 +103,7 @@ Methods
 
 ---
 
-## Pricing & Strategic Decision Making
+### Pricing & Strategic Decision Making
 
 **Question**
 
