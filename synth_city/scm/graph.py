@@ -12,6 +12,19 @@ SynthCity: a structural causal model over a synthetic population.
 Because every structural equation is known (see nodes.py), `true_ate`
 above is the *actual* causal effect, not an estimate -- this is what
 Stage 2 estimators (propensity scores, IPTW, DML, ...) get graded against.
+
+To recalibrate the model (change any coefficient, clip bound, or noise
+scale), pass a modified SCMParams -- see config.py -- rather than editing
+nodes.py:
+
+    from synth_city.scm.config import DEFAULT_PARAMS, IncomeParams
+    import dataclasses
+
+    custom_params = dataclasses.replace(
+        DEFAULT_PARAMS,
+        income=dataclasses.replace(DEFAULT_PARAMS.income, education_coef=4_000.0),
+    )
+    city = SynthCity(n_people=2000, seed=0, params=custom_params)
 """
 
 from __future__ import annotations
@@ -20,7 +33,8 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 
-from .nodes import NODE_SPECS, POLICY_NODES
+from .config import DEFAULT_POLICY, NODE_PARAM_ATTR, SCMParams, DEFAULT_PARAMS
+from .nodes import NODE_SPECS
 
 
 class SynthCity:
@@ -29,10 +43,12 @@ class SynthCity:
         n_people: int = 2_000,
         seed: int = 0,
         policy: dict | None = None,
+        params: SCMParams | None = None,
     ):
         self.n = n_people
         self.seed = seed
-        self.policy = {**POLICY_NODES, **(policy or {})}
+        self.policy = {**DEFAULT_POLICY, **(policy or {})}
+        self.params = params or DEFAULT_PARAMS
         self._dag = self._build_dag()
         self._order = list(nx.topological_sort(self._dag))
 
@@ -63,7 +79,12 @@ class SynthCity:
         unknown = set(overrides) - set(self.policy)
         if unknown:
             raise ValueError(f"Not a policy node: {sorted(unknown)}")
-        return SynthCity(n_people=self.n, seed=self.seed, policy={**self.policy, **overrides})
+        return SynthCity(
+            n_people=self.n,
+            seed=self.seed,
+            policy={**self.policy, **overrides},
+            params=self.params,
+        )
 
     # ------------------------------------------------------------------
     def sample(self) -> pd.DataFrame:
@@ -77,7 +98,8 @@ class SynthCity:
                 continue
             func, parents = NODE_SPECS[node]
             kwargs = {p: values[p] for p in parents}
-            values[node] = func(rng, self.n, **kwargs)
+            node_params = getattr(self.params, NODE_PARAM_ATTR[node])
+            values[node] = func(rng, self.n, params=node_params, **kwargs)
 
         return pd.DataFrame(values)
 
