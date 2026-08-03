@@ -1,9 +1,7 @@
 # Direct Intervention Effects: What Does Raising the Minimum Wage Actually Do?
 
 **Status:** ☑ complete
-**Scripts:** [`minimum_wage_effect.py`](./minimum_wage_effect.py) ·
-[`policy_sensitivity_tornado.py`](./policy_sensitivity_tornado.py) ·
-[`subgroup_effects_by_education_age.py`](./subgroup_effects_by_education_age.py)
+**Script:** [`minimum_wage_effect.py`](./minimum_wage_effect.py) ·
 
 ## Objective
 
@@ -86,10 +84,57 @@ else. It also isn't the most powerful lever available — tax rate moves income 
 more per unit of policy range swept. The practical takeaway for a policymaker optimizing for
 income alone: tax rate is the bigger lever, but minimum wage is the more *targeted* one.
 
+
+
+
+# Social Network Structure: How Much Does Background Sort People?
+
+## Objective
+
+The social network in Synth City is generated to be homophilous on parental socioeconomic
+status (SES) — people connect more with others from a similar background. How strong is
+that effect visually and numerically, and is it strong enough to matter for downstream
+questions (e.g. job-referral effects on income)?
+
+## Method
+
+- **Population:** n = 400 (kept small deliberately — a force-directed layout of thousands
+  of nodes is an unreadable hairball, not an insight)
+- Social graph built via stochastic block model, blocked on parental SES quintile
+- Homophily measured as: share of edges connecting two people in the *same* SES tier,
+  compared to the ~20% you'd expect if connections formed randomly across 5 equal-sized tiers
+
+## Key results
+
+![social network](./figures/social_network_ses.png)
+
+The five SES tiers visibly separate into distinct regions of the graph — you can identify a
+person's socioeconomic tier from their position in the network almost as reliably as from
+the color legend itself.
+
+![degree distribution](./figures/degree_distribution.png)
+
+## Headline numbers
+
+| Metric | Value |
+|---|---|
+| Nodes / edges | 400 / 1,257 |
+| Average clustering coefficient | 0.039 |
+| Share of edges within the same SES tier | **80.3%** (vs. ~20% under random mixing) |
+
+## Interpretation
+
+80% same-tier connectivity against a 20% random baseline is strong, deliberate homophily —
+exactly what the generator was built to produce, and a useful confirmation that the social
+graph isn't accidentally closer to a random (Erdős–Rényi) graph, which would defeat the
+point of including a network at all. This matters beyond aesthetics: `social_network_position`
+feeds directly into `income` in the SCM, so this clustering is *why* SES has an indirect path
+to income beyond the direct one — a second confounding channel worth being aware of before
+trusting any naive regression estimate of `education → income`.
+
+
 ## Reproduce
 
 ```bash
 python quantitative_analysis/causal-inference/direct-intervention-effects/minimum_wage_effect.py
-python quantitative_analysis/causal-inference/direct-intervention-effects/policy_sensitivity_tornado.py
-python quantitative_analysis/causal-inference/direct-intervention-effects/subgroup_effects_by_education_age.py
 ```
