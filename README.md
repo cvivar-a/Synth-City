@@ -1,6 +1,7 @@
-# Synth-City
+# SynthCity — Causal Simulation Laboratory
 
 A synthetic city simulation framework for benchmarking causal inference methods, data science techniques,experimentation, marketing mix modeling, and game-theory auctions — with known ground truth, because the population is generated from a structural causal model rather than collected.
+
 
 
 ## Quantitative analysis
