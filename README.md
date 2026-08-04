@@ -1,5 +1,5 @@
 
-# SynthCity- A synthetic city for solving real business problems with data
+# SynthCity
 
 SynthCity is a simulation platform that generates realistic populations, businesses, and consumer behavior from a Structural Causal Model (SCM). Because every decision in the city is generated—not observed—the true causal relationships are known.
 The project serves as a sandbox for building and evaluating end-to-end data science workflows across experimentation, causal inference, forecasting, marketing analytics, pricing, and strategic decision making.
