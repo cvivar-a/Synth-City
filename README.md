@@ -31,99 +31,6 @@ Each application answers a practical business question.
 | 💰 Marketing Analytics | Which marketing channels generated incremental sales, and how should budget be allocated? |
 | 🏪 Pricing & Competition | How do competing businesses adjust prices, and what pricing strategy maximizes revenue? |
 
----
-
-## How can SynthCity be use for:
-### Causal Inference
-**Question**
-
-A city introduces a transportation subsidy.
-
-Did it actually increase employment, or were employed people simply more likely to receive it?
-
-Example analyses include:
-
-- Estimating treatment effects
-- Evaluating policy interventions
-- Comparing observational estimates against ground truth
-- Heterogeneous treatment effects
-
-Methods
-
-- Propensity Scores
-- IPTW
-- Doubly Robust Estimation
-- Double Machine Learning
-- Causal Forests
-
----
-
-### Data Science
-**Question**
-
-Which customers are most likely to become loyal shoppers?
-
-Example analyses include:
-
-- Customer segmentation
-- Predictive modeling
-- Feature engineering
-- Model evaluation
-- Explainability
-
-Methods
-
-- XGBoost
-- Random Forests
-- Logistic Regression
-- SHAP
-- Cross Validation
-
----
-
-### Marketing Analytics
-
-**Question**
-
-Should the company invest in advertising, promotions, or pricing?
-
-Example analyses include:
-
-- Marketing Mix Modeling
-- Channel attribution
-- Incrementality analysis
-- Budget optimization
-
-Methods
-
-- Media Mix Regression
-- Adstock Models
-- Saturation Functions
-- Shapley Attribution
-
----
-
-### Pricing & Strategic Decision Making
-
-**Question**
-
-What happens when multiple businesses compete for the same customers?
-
-Example analyses include:
-
-- Competitive pricing
-- Auction simulations
-- Market equilibrium
-- Policy design
-
-Methods
-
-- Nash Equilibrium
-- Mechanism Design
-- Cooperative Game Theory
-- Shapley Value
-
----
 
 # Repository Structure
 
@@ -142,21 +49,7 @@ synth_city/
 └── requirements.txt
 ```
 
----
 
-# Quick Start
-
-```bash
-pip install -r requirements.txt
-
-python -m synth_city.data.generate \
-    --n 5000 \
-    --seed 0 \
-
-pytest tests/ -v
-```
-
----
 
 # Roadmap
 
@@ -175,10 +68,3 @@ Coming next
 - Dynamic pricing
 - Reinforcement learning agents
 - City-wide policy optimization
-
----
-
-## Motivation
-
-By combining causal simulation with realistic consumer behavior, the project provides a controlled environment for developing practical data science solutions before applying them to real-world problems.
-
