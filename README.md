@@ -26,7 +26,7 @@ Each application answers a practical business question.
 
 | Domain | Business Question |
 |---------|------------------|
-| 📈 ![Causal Inference](https://github.com/cvivar-a/Synth-City/tree/main/quantitative_anaysis/causal_inference) | Did the intervention or campaign actually cause the observed change? |
+| ![Causal Inference](https://github.com/cvivar-a/Synth-City/tree/main/quantitative_anaysis/causal_inference) | Did the intervention or campaign actually cause the observed change? |
 | 📊 Data Science | Which customers are most likely to purchase, churn, or respond to an offer? |
 | 💰 Marketing Analytics | Which marketing channels generated incremental sales, and how should budget be allocated? |
 | 🏪 Pricing & Competition | How do competing businesses adjust prices, and what pricing strategy maximizes revenue? |
