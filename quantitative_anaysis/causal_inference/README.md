@@ -9,7 +9,7 @@ Typical case studies include:
 
 | Analysis | Business Question | Report |
 |----------|-------------------|--------|
-| Minimum Wage Effect | Does increasing the minimum wage improve household income after accounting for selection bias? | [Results](causal_inference/minimum_wage_effect/results.md) |
+| Minimum Wage Effect | Does increasing the minimum wage improve household income after accounting for selection bias? | [Results](/minimum_wage_effect/results.md) |
 | Transportation Subsidy | Does subsidized public transport increase employment? | *(Coming Soon)* |
 | Vaccination Campaign | Does a public health campaign improve long-term outcomes? | *(Coming Soon)* |
 
