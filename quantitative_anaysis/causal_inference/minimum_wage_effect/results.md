@@ -1,50 +1,74 @@
-# Direct Intervention Effects: What Does Raising the Minimum Wage Actually Do?
+# What Happens to Society When the Minimum Wage Increases?
 
-**Status:** ☑ complete
-**Script:** [`minimum_wage_effect.py`](./minimum_wage_effect.py) ·
+**Status:** ✅ Complete  
+**Analysis:** [`minimum_wage_effect.py`](./minimum_wage_effect.py)
 
-## Objective
+## Context
 
-Because Synth City is a known structural causal model, we don't have to *estimate* the
-effect of a policy change — we can generate the same population twice, once under each
-policy, and read off the true effect directly. This write-up walks through that effect
-from four angles: the raw distribution shift, how it scales with the size of the wage
-increase, how it propagates through the rest of the causal graph, and — most importantly —
-who it actually reaches.
+In real-world, higher wages may coincide with other economic changes, making it challenging to separate correlation from causation. SynthCity provides a unique benchmark: because every individual is generated from a Structural Causal Model (SCM), the same population can be simulated under different interventions while holding everything else constant. This allows the **true causal effect** of a minimum wage increase to be measured directly. Then, we can look at the impact of increasing the minimum wage on household income, employment, and related socioeconomic outcomes
 
-## Method
+This analysis examines how the minimum wage increase  propagate throughout the city's economy and which groups benefit the most.
 
-- **Population:** n = 5,000 (n = 20,000 for the subgroup breakdown, to keep subgroup means stable), seed = 0
-- **Intervention:** `do(min_wage=15.0)` vs. the default policy (`min_wage=7.25`)
-- **Stability check:** the headline ATE is also re-estimated across 20 seeds to establish
-  a noise floor — see Headline numbers
+## Experimental design
 
-## Key results
+The intervention compares two otherwise identical cities:
 
-### 1. Income distribution shift
+- **Baseline city** Minimum wage = **\$7.25**
+- **Intervention city:** Minimum wage = **\$15.00**
+
+Simulation settings:
+
+- Population: **5,000** residents
+- Subgroup analysis: **20,000** residents (to improve estimate stability)
+- Random seed: **0**
+- Stability assessment: Average Treatment Effect (ATE) replicated across **20 independent simulations**
+
+---
+
+## Key Questions
+
+1. **Overall Impact**
+   - How much does household income change after the policy?
+
+2. **Policy Sensitivity**
+   - How do outcomes change as the minimum wage increases incrementally?
+
+3. **Causal Spillover Effects**
+   - Which downstream variables (health, mobility, spending, etc.) change as a consequence of higher wages?
+
+4. **Distributional Effects**
+   - Which demographic groups benefit the most, and which experience little or no change?
+
+
+
+## Results
+
+### 1. How much does household income change after the policy?
 
 ![income distribution shift](./figures/income_distribution_shift.png)
 
-The whole distribution shifts right, not just the floor — income has noise on top of the
-wage floor, so the effect isn't a clean truncation, it's a genuine mean shift.
+
+Raising the minimum wage from **$7.25/hour** to **$15.00/hour** increased the city's **mean annual income** from **$42,943.10** to **$43,943.31**, an average gain of +2.33%.
+The estimated **Average Treatment Effect (ATE) was **$1,000.21**.
+
+The intervention had its largest impact on lower-income workers. The **minimum annual income** increased from **$15,215.29** to **$31,200.00** (**+105.06%**), creating a clear concentration of individuals at the new minimum-income threshold. This shift indicates that the intervention primarily raised earnings at the lower end of the income distribution while leaving higher-income groups largely unchanged.
+
+To assess the robustness of the estimated policy effect, the simulation was repeated across **20 independent random seeds**. The estimated **Average Treatment Effect (ATE)** was **$1,000.21** in the reference simulation (*n* = 5,000) and averaged **$981.36 ± $27.93** across all runs, demonstrating that the observed effect is highly stable.
 
 ### 2. Dose-response curve
 
 ![min wage dose response](./figures/min_wage_dose_response.png)
 
-Sweeping `min_wage` from $7.25 to $24 shows a close-to-linear relationship in this range,
-flattening once the floor stops binding for most of the population.
+Increasing the minimum wage produces a clear, positive increase in mean annual income across the citizens. The relationship is nonlinear: modest increases primarily benefit workers earning near the wage floor, while larger wage increases affect a broader share of the workforce, causing average income to rise more rapidly.
 
-### 3. Propagation through the causal graph
+As the minimum wage approaches **$24–25/hour**, the citizens mean annual income exceeds **$52,000**, compared with the baseline average of **$42,943**. This illustrates how the intervention impact expands beyond the lowest-income workers as progressively more residents become directly affected.
 
-![dag structure](./figures/dag_structure.png)
+### 3. How the Policy Propagates Through the City, spillover effect
+
+
 ![dag shift](./figures/dag_shift_min_wage.png)
 
-`min_wage` (gold) is the intervened node. `income` (its direct child) shows the largest
-standardized effect; `mobility_access` and `health` (two hops downstream) show smaller
-effects; upstream nodes (`education`, `ability`, `parental_ses`) show essentially zero, as
-they should — nothing in a valid causal DAG flows backward against causal order, so this
-doubles as a correctness check on the SCM itself.
+Increasing the minimum wage directly raises **income**, which exhibits the largest effect following the intervention (red node). Those gains propagate to downstream outcomes, producing smaller but measurable improvements in **mobility access** and **health**. Characteristics such as  **education**, **ability**, and **parental socioeconomic status**—remain unchanged. This confirms that the intervention affects only variables downstream of the intervention.
 
 ### 4. Which lever matters most
 

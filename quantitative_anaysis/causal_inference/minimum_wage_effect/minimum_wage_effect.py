@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 import pandas as pd
+from rich import print, pretty
+
+#pretty.install()
 
 '''
 Set pathway for calling Synth City:
@@ -49,6 +52,9 @@ baseline_df = city.sample()
 
 treated_city = city.do(min_wage=MIN_WAGE_TREATMENT)
 treated_df = treated_city.sample()
+
+print("baseline mean income", baseline_df["income"].describe().round(2))
+print("treated mean income", treated_df["income"].describe().round(2))
 
 true_ate = treated_df["income"].mean() - baseline_df["income"].mean()
 print(f"true_ate (single sample, n={N}): {true_ate:,.2f}")
