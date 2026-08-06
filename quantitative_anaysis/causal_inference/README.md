@@ -1,4 +1,7 @@
 # Causal Inference
+
+
+
 Typical case studies include:
 
 - Public policy evaluation
@@ -7,13 +10,15 @@ Typical case studies include:
 - Healthcare and education policies
 - Customer incentives and promotions
 
+# Ground truth interventions 
+
 | Analysis | Business Question | Report |
 |----------|-------------------|--------|
 | Minimum Wage Effect | Does increasing the minimum wage improve household income after accounting for selection bias? | [Results](/minimum_wage_effect/results.md) |
 | Transportation Subsidy | Does subsidized public transport increase employment? | *(Coming Soon)* |
 | Vaccination Campaign | Does a public health campaign improve long-term outcomes? | *(Coming Soon)* |
 
-
+<!--
 # DS 
 Typical case studies include:
 
@@ -62,3 +67,4 @@ Typical case studies include:
 | Market Entry | What happens when a new competitor enters the market? | *(Coming Soon)* |
 
 ---
+-->
