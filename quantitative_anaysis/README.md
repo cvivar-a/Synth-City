@@ -10,16 +10,3 @@ Each case study includes:
 
 Although the data are simulated, the analytical workflow mirrors real-world data science projects—from data preparation and exploratory analysis to modeling, evaluation, and communicating actionable recommendations.
 
-
-
-# Analysis Domains:
-
-**Causal Inference** : Did an intervention actually cause the observed outcome, or are we only seeing a correlation?
-
-**Data Science**: What can we learn from the city's data, and how can those insights support better decisions?
-
-**Marketing Analytics**: Which marketing activities generated incremental value, and where should future budget be invested?
-
-**Pricing & Competition**: How do businesses adapt their strategies when competitors and customers respond to every decision?
-
-
