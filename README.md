@@ -1,7 +1,7 @@
 
 # SynthCity
 
-SynthCity is a simulation platform that generates realistic populations, businesses, and consumer behavior from a Structural Causal Model (SCM). Because every decision in the city is generated—not observed—the true causal relationships are known.
+SynthCity is a simulation platform that generates realistic populations, businesses, and consumer behavior from a Structural Causal Model (SCM). Since every decision in the city is generated, not observed, the true causal relationships are known.
 The project serves as a sandbox for building and evaluating end-to-end data science workflows across experimentation, causal inference, forecasting, marketing analytics, pricing, and strategic decision making.
 
 ---
@@ -42,14 +42,15 @@ synth_city/
 ├── synth_city/              # core package: SCM, DAG, do(), social graph
 ├── tests/
 ├── quantitative_analysis/
-│   ├── causal-inference/
-│   ├── ds/
-│   ├── mmm/
-│   ├── game-theory/
+│   ├── causal_inference/
+│   ├── ds:exploratory/
+│   ├── experimentation/
+│   ├── marketing_analytics/
+│   ├── predictive_modeling/
+│   ├── pricing_and_strategy/
 │   └── README.md
 └── requirements.txt
 ```
-
 
 
 # Roadmap
