@@ -1,13 +1,14 @@
-# What Happens to Society When the Minimum Wage Increases?
+# ground truth interventions: What Happens in SynthCity When the Minimum Wage Increases?
 
 **Status:** ✅ Complete  
 **Analysis:** [`minimum_wage_effect.py`](./minimum_wage_effect.py)
 
 ## Context
 
-In real-world, higher wages may coincide with other economic changes, making it challenging to separate correlation from causation. SynthCity provides a unique benchmark: because every individual is generated from a Structural Causal Model (SCM), the same population can be simulated under different interventions while holding everything else constant. This allows the **true causal effect** of a minimum wage increase to be measured directly. Then, we can look at the impact of increasing the minimum wage on household income, employment, and related socioeconomic outcomes
+SynthCity each individual is generated from a Structural Causal Model (SCM), the same population can be simulated under different interventions while holding everything else constant. This allows the **true causal effect** of an intervention to be measured directly. 
 
 This analysis examines how the minimum wage increase  propagate throughout the city's economy and which groups benefit the most.
+
 
 ## Experimental design
 
@@ -23,22 +24,11 @@ Simulation settings:
 - Random seed: **0**
 - Stability assessment: Average Treatment Effect (ATE) replicated across **20 independent simulations**
 
----
-
 ## Key Questions
-
-1. **Overall Impact**
-   - How much does household income change after the policy?
-
-2. **Policy Sensitivity**
-   - How do outcomes change as the minimum wage increases incrementally?
-
-3. **Causal Spillover Effects**
-   - Which downstream variables (health, mobility, spending, etc.) change as a consequence of higher wages?
-
-4. **Distributional Effects**
-   - Which demographic groups benefit the most, and which experience little or no change?
-
+- How much does household income change after the policy?
+- How do outcomes change as the minimum wage increases incrementally?
+- Which downstream variables (health, mobility, spending, etc.) change as a consequence of higher wages?
+- Which demographic groups benefit the most, and which experience little or no change?
 
 
 ## Results
@@ -46,7 +36,6 @@ Simulation settings:
 ### 1. How much does household income change after the policy?
 
 ![income distribution shift](./figures/income_distribution_shift.png)
-
 
 Raising the minimum wage from **$7.25/hour** to **$15.00/hour** increased the city's **mean annual income** from **$42,943.10** to **$43,943.31**, an average gain of +2.33%.
 The estimated **Average Treatment Effect (ATE) was **$1,000.21**.
@@ -64,7 +53,6 @@ Increasing the minimum wage produces a clear, positive increase in mean annual i
 As the minimum wage approaches **$24–25/hour**, the citizens mean annual income exceeds **$52,000**, compared with the baseline average of **$42,943**. This illustrates how the intervention impact expands beyond the lowest-income workers as progressively more residents become directly affected.
 
 ### 3. How the Policy Propagates Through the City, spillover effect
-
 
 ![dag shift](./figures/dag_shift_min_wage.png)
 
